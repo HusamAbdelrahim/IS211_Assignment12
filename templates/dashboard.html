@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Class Dashboard</h1>
+
+<h2>Students</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Actions</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.first_name }}</td>
+        <td>{{ student.last_name }}</td>
+        <td><a href="{{ url_for('student_results', id=student.id) }}">View Results</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Quizzes</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Subject</th>
+        <th>Questions</th>
+        <th>Date</th>
+    </tr>
+    {% for quiz in quizzes %}
+    <tr>
+        <td>{{ quiz.id }}</td>
+        <td>{{ quiz.subject }}</td>
+        <td>{{ quiz.num_questions }}</td>
+        <td>{{ quiz.quiz_date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .flash { color: red; margin: 10px 0; }
+        .content { margin: 20px; }
+        .nav-link { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% if session.logged_in %}
+            <div class="nav">
+                <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+                <a href="{{ url_for('add_student') }}" class="nav-link">Add Student</a>
+                <a href="{{ url_for('add_quiz') }}" class="nav-link">Add Quiz</a>
+                <a href="{{ url_for('add_result') }}" class="nav-link">Add Result</a>
+            </div>
+        {% endif %}
+
+        {% if get_flashed_messages() %}
+            <div class="flash">{{ get_flashed_messages()[0] }}</div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
